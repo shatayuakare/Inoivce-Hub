@@ -74,15 +74,15 @@ const InvoiceForm = ({ productsHandler }) => {
             </div>
             {/* {
                 products.map((item, index) => ( */}
-            <div className='flex gap-4 items-end' >
-                <div className="md:w-1/2 flex-2">
+            <div className='flex flex-wrap gap-4 items-end' >
+                <div className="sm:w-full md:flex-2 sm:flex-4">
                     <label htmlFor="title">Title</label>
                     <input className='input bg-zinc-100' type="text" name="title" id="title" placeholder='Product title...'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
-                <div className="md:w-1/2 flex-1">
+                <div className="md:w-1/2 flex-1 sm:flex-shrink">
                     <label htmlFor="price">Price (₹)</label>
                     <input className='input bg-zinc-100' type="tel" name="price" id="price" placeholder='Product price...'
                         value={price}

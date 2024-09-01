@@ -51,7 +51,7 @@ const Auth = () => {
 
     return (
         <section className='content-center bg-blue-100'>
-            <div className="px-12">
+            <div className="md:px-12 sm:px-2">
                 <div className="md:w-2/5 mx-auto p-6 rounded-lg bg-blue-200" id='auth'>
 
                     <div className="text-center">
