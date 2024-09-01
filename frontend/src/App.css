@@ -1,0 +1,33 @@
+* {
+  text-decoration: none;
+
+}
+
+section {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#invoice-form label,
+#auth label {
+  display: block;
+  padding: .45rem;
+  padding-bottom: .2rem;
+}
+
+#invoice-form label::after,
+#auth label::after {
+  content: '*';
+  color: red;
+}
+
+#invoice-form input,
+#auth input {
+  width: 100%;
+}
+
+/* input.input {
+  background: transparent;
+  outline: 2px solid gray;
+ } 
+ */
