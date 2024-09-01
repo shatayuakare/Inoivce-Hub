@@ -1,17 +1,12 @@
-import { lazy } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { useAuth } from './context/AuthProvider'
 
-// import Home from './pages/home/Home'
-// import Preview from './pages/preview/Preview'
-// import Header from './pages/Header'
-// import Auth from './pages/auth/Auth'
+import Home from './pages/home/Home'
+import Preview from './pages/preview/Preview'
+import Header from './pages/Header'
+import Auth from './pages/auth/Auth'
 
-const Header = lazy(() => import('./pages/Header'))
-const Home = lazy(() => import('./pages/home/Home'))
-const Preview = lazy(() => import('./pages/preview/Preview'))
-const Auth = lazy(() => import('./pages/auth/Auth'))
 
 const App = () => {
 
