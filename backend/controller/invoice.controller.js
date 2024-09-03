@@ -1,10 +1,14 @@
+import mongoose from "mongoose";
 import Invoices from "../models/invoice.schema.js";
+import Users from "../models/user.schema.js"
 
-let series = 1000
 export const getInvoices = async (req, res) => {
     try {
         const invoices = await Invoices.find()
         if (!invoices) return res.status(404).json({ message: "No data found" })
+        // const invoices = await Invoices.find();
+        // console.log("length : ", invoices.length)
+
         res.status(200).json(invoices)
     } catch (error) {
         res.status(400).json(error.message)
@@ -22,19 +26,23 @@ export const getInvoice = async (req, res) => {
     }
 }
 
-export const newInvoice = (req, res) => {
+export const newInvoice = async (req, res) => {
     try {
-        const { customerAddress, customerName, products, auther } = req.body;
+        const { customerAddress, customerName, products } = req.body;
+
+        const invoices = await Invoices.find();
 
         const createInvoice = new Invoices({
-            series: series++, customerName, customerAddress, products, auther
+            series: invoices.length + 1, customerName, customerAddress, products, auther: mongoose.Types.ObjectId()
         })
 
-        createInvoice.save()
+        await createInvoice.save().then((invoice) => {
+            return Users.updateOne({ _id: createInvoice.auther }, { $push: { invoices: invoice._id } })
+        }).then(() => console.log(`Invoice ${createInvoice._id} and ${invoices._id}`))
 
         res.status(201).json({
             message: "Invoice Generated",
-            createInvoice
+            invoice: createInvoice
         })
     } catch (error) {
         res.status(400).json(error.message)

@@ -10,6 +10,7 @@ section {
 
 #invoice-form label,
 #auth label {
+  text-wrap: nowrap;
   display: block;
   padding: .45rem;
   padding-bottom: .2rem;
@@ -18,7 +19,7 @@ section {
 #invoice-form label::after,
 #auth label::after {
   content: '*';
-  color: red;
+  color: rgb(187, 0, 0);
 }
 
 #invoice-form input,

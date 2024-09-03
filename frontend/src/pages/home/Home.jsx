@@ -10,8 +10,8 @@ const Home = () => {
     }
 
     return (
-        <section className="content-center bg-blue-100 pt-12">
-            <div className="md:w-3/5 mx-auto bg-blue-200 p-4 rounded-xl">
+        <section className="bg-blue-100 flex md:flex-row sm:flex-col">
+            <div className="md:w-3/5 mx-auto bg-blue-200 p-4 mt-3">
                 <InvoiceForm productsHandler={productsHandler} />
 
                 <table className='table mt-2'>
@@ -43,6 +43,10 @@ const Home = () => {
 
                 </table>
             </div>
+            {/* <div className='mx-auto'>
+                {/* <PreviewPage theme="red" /> 
+                <Preview />
+            </div> */}
         </section>
     )
 }

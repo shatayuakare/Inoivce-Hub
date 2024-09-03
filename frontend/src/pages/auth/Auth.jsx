@@ -9,23 +9,28 @@ const Auth = () => {
     const [password, setPassword] = useState('')
     const [active, setActive] = useState(true)
 
+    const [loader, setLoader] = useState(false)
+
 
     const loginHandler = async (e) => {
         e.preventDefault();
 
         if (!email) return toast.warning("Email is reequired")
         if (!password) return toast.warning("Password is reequired")
+
+        setLoader(true)
         const loginData = {
             email, password
         }
 
         await axios.post("http://localhost:4000/auth/login", loginData).then((res) => {
-            toast.success(re.data.message)
+            toast.success(res.data.message)
 
             localStorage.setItem("User", JSON.stringify(res.data.user))
+            setLoader(false)
             window.location.reload()
         }).catch((err) => toast.error(err.response.data.message))
-
+        setLoader(false)
     }
 
     const signUpHandler = async (e) => {
@@ -34,17 +39,18 @@ const Auth = () => {
         if (!fullName) return toast.warning("Name is reequired")
         if (!email) return toast.warning("Email is reequired")
         if (!password) return toast.warning("Password is reequired")
+        setLoader(true)
         const signUpData = {
             fullName, email, password
         }
 
         await axios.post("http://localhost:4000/auth/signup", signUpData).then((res) => {
-            toast.success("Signup")
+            toast.success(res.data.message)
             localStorage.setItem("User", JSON.stringify(res.data.user))
-
+            setLoader(false)
             window.location.reload()
         }).catch((err) => toast.error(err.response.data.message))
-
+        setLoader(false)
     }
 
 
@@ -95,7 +101,12 @@ const Auth = () => {
 
                                 <div className='text-center'>
                                     <button type='submit' className="btn bg-blue-500 hover:bg-blue-600 text-white border-none btn-wide">
-                                        Sign up
+                                        {
+                                            loader ?
+                                                <span className="loading loading-bars loading-sm"></span>
+                                                :
+                                                <span>Sign up</span>
+                                        }
                                     </button>
                                 </div>
                             </form>
@@ -118,7 +129,12 @@ const Auth = () => {
 
                                 <div className='text-center'>
                                     <button type='submit' className="btn bg-blue-500 hover:bg-blue-600 text-white border-none btn-wide">
-                                        Login
+                                        {
+                                            loader ?
+                                                <span className="loading loading-bars loading-sm"></span>
+                                                :
+                                                <span>Login</span>
+                                        }
                                     </button>
                                 </div>
                             </form>

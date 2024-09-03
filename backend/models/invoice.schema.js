@@ -37,11 +37,10 @@ const invoiceSchema = mongoose.Schema({
             }
         }
     ],
-    payment: [
-        {
-            type: String
-        }
-    ],
+    payment: {
+        type: String,
+        required: true
+    },
     auther: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users"
