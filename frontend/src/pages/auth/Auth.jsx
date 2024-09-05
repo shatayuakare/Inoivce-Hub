@@ -23,7 +23,7 @@ const Auth = () => {
             email, password
         }
 
-        await axios.post("http://localhost:4000/auth/login", loginData).then((res) => {
+        await axios.post("https://invoice-hub.onrender.com/auth/login", loginData).then((res) => {
             toast.success(res.data.message)
 
             localStorage.setItem("User", JSON.stringify(res.data.user))
@@ -44,7 +44,7 @@ const Auth = () => {
             fullName, email, password
         }
 
-        await axios.post("http://localhost:4000/auth/signup", signUpData).then((res) => {
+        await axios.post("https://invoice-hub.onrender.com/auth/signup", signUpData).then((res) => {
             toast.success(res.data.message)
             localStorage.setItem("User", JSON.stringify(res.data.user))
             setLoader(false)

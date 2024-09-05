@@ -9,7 +9,7 @@ const Invoice = () => {
 
     useEffect(() => {
         const getInvoices = async () => {
-            await axios.get("http://localhost:4000/invoice").then((res) => {
+            await axios.get("https://invoice-hub.onrender.com/invoice").then((res) => {
                 setInvoices(res.data)
                 console.log(res.data)
             }).catch((err) => console.log(err.response.data.message))

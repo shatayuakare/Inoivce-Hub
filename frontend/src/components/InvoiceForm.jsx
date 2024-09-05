@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from "axios"
 import { useAuth } from '../context/AuthProvider'
 import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
 
 const InvoiceForm = ({ productsHandler }) => {
 
@@ -84,7 +85,7 @@ const InvoiceForm = ({ productsHandler }) => {
         const invoiceData = {
             customerName, customerAddress, products, auther: authUser ? authUser._id : undefined, payment
         }
-        await axios.post("http://localhost:4000/invoice/create", invoiceData).then((res) => {
+        await axios.post("https://invoice-hub.onrender.com/invoice/create", invoiceData).then((res) => {
             console.log(res)
             toast.success(res.data.message)
             setLoader(false)
@@ -219,15 +220,17 @@ const InvoiceForm = ({ productsHandler }) => {
                 error && <div className='text-red-500'> {error}</div>
             }
             <div className="text-center mt-4">
-                <button type='submit' className="btn bg-blue-600 hover:bg-blue-700 text-white border-0 btn-wide text-center">
-                    {
-                        loader
-                            ?
-                            <span className="loading loading-bars loading-sm"></span>
-                            :
-                            <span>Generate Invoice</span>
-                    }
-                </button>
+                <Link to={"/preview"}>
+                    <button type='submit' className="btn bg-blue-600 hover:bg-blue-700 text-white border-0 btn-wide text-center">
+                        {
+                            loader
+                                ?
+                                <span className="loading loading-bars loading-sm"></span>
+                                :
+                                <span>Generate Invoice</span>
+                        }
+                    </button>
+                </Link>
             </div>
 
         </form>
